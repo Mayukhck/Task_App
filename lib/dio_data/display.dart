@@ -35,8 +35,8 @@ class _DisplayScreenState extends State<DisplayScreen> {
               ),
             ),
           ),
-          Expanded(
-            child: ApiCall(searchQuery: _searchQuery),
+          const Expanded(
+            child: ApiCall(),
           ),
         ],
       ),
