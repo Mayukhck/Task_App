@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/data/user_data.dart';
-import 'package:task_app/dio_data/api_call.dart';
+//import 'package:task_app/dio_data/api_call.dart';
+import 'package:task_app/dio_data/display.dart';
 //import 'package:task_app/screens/dashboard_screen.dart';
 import 'package:task_app/screens/signup_screen.dart';
 //import 'package:task_app/web_view/web_view_container.dart';
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => //const DashboardScreen()
-          const ApiCall(),
+          const DisplayScreen(),
         ),
       );
     } else {
