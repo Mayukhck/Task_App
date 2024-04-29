@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Login Page'),
       ),
       body: Center(
         child: Card(
@@ -81,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
+                    key: const ValueKey('email_id'),
                     decoration:
                         const InputDecoration(labelText: 'Email address'),
                     keyboardType: TextInputType.emailAddress,
@@ -99,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   TextFormField(
+                    key: const ValueKey('pass'),
                     decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
                     validator: (value) {

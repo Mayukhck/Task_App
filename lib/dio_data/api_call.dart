@@ -46,6 +46,7 @@ class _ApiCallState extends State<ApiCall> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: const Text('Data'),
       ),
       body: Padding(
@@ -53,7 +54,7 @@ class _ApiCallState extends State<ApiCall> {
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             TextField(
               onChanged: (value) => _runFilter(value),
