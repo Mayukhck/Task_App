@@ -33,12 +33,7 @@ class _ApiCallState extends State<ApiCall> {
       if (enteredKeyword.isNotEmpty) {
         _filteredBooks = _books
             .where((book) =>
-                book.name
-                    .toLowerCase()
-                    .contains(enteredKeyword.toLowerCase()) ||
-                book.author
-                    .toLowerCase()
-                    .contains(enteredKeyword.toLowerCase()))
+                book.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
             .toList();
       } else {
         _filteredBooks = _books;

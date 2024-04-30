@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textCapitalization: TextCapitalization.none,
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return 'Please enter a valied email address';
+                        return 'Please enter a proper name';
                       }
                       return null;
                     },

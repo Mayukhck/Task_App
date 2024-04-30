@@ -116,12 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
+                        key: const ValueKey('login_button'),
                         onPressed: () {
                           _submit();
                         },
                         child: const Text('Login'),
                       ),
                       ElevatedButton(
+                        key: const ValueKey('signUp_button'),
                         onPressed: () {
                           _signUpPage();
                         },
