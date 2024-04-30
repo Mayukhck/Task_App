@@ -24,7 +24,7 @@ void main() {
     expect(emailTextFiled, findsOneWidget);
   });
 
-  testWidgets('finding the emial id text field',
+  testWidgets('finding the password id text field',
       (WidgetTester widgetTester) async {
     await widgetTester.pumpWidget(const MaterialApp(
       home: LoginScreen(),
@@ -35,7 +35,7 @@ void main() {
     expect(passwordTextFiled, findsOneWidget);
   });
 
-  testWidgets('find button in the screen', (widgetTester) async {
+  testWidgets('find buttons in the screen', (widgetTester) async {
     await widgetTester.pumpWidget(const MaterialApp(
       home: LoginScreen(),
     ));
@@ -44,3 +44,5 @@ void main() {
     expect(loginButton, findsNWidgets(2));
   });
 }
+
+

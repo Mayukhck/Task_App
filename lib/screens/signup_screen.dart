@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/data/user_data.dart';
-import 'package:task_app/dio_data/api_call.dart';
-
-//import 'package:task_app/dio_data/display.dart';
-//import 'package:task_app/screens/dashboard_screen.dart';
-//import 'package:task_app/web_view/web_view_container.dart';
+import 'package:task_app/dio_data/book_api_call.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -44,8 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _form.currentState?.reset();
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => //const DashboardScreen()
-        const ApiCall(),
+        builder: (context) => const ApiCall(),
       ),
     );
   }
@@ -68,6 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
+                    key: const ValueKey('User_name'),
                     decoration: const InputDecoration(labelText: 'User Name'),
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
@@ -83,6 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   TextFormField(
+                    key: const ValueKey('Email_id'),
                     decoration:
                         const InputDecoration(labelText: 'Email address'),
                     keyboardType: TextInputType.emailAddress,
@@ -101,6 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   TextFormField(
+                    key: const ValueKey('password'),
                     decoration: const InputDecoration(labelText: 'Password'),
                     obscureText: true,
                     validator: (value) {
