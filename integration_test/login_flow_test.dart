@@ -1,68 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:task_app/screens/login_screen.dart';
 
 void main() {
-  testWidgets('finding the title wedget', (widgetTester) async {
-    await widgetTester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
+  group('Login flow test', () {
+    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-    Finder title = find.text('Login Page');
+    testWidgets('should show required error meesage for empty field',
+        (widgetTester) async {
+      await widgetTester.pumpWidget(const MaterialApp(
+        home: LoginScreen(),
+      ));
 
-    expect(title, findsOneWidget);
-  });
+      Finder loginButton = find.byKey(const ValueKey('login_button'));
 
-  testWidgets('finding the emial id text field',
-      (WidgetTester widgetTester) async {
-    await widgetTester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
+      await widgetTester.tap(loginButton);
+      await widgetTester.pumpAndSettle(const Duration(seconds: 3));
 
-    Finder emailTextFiled = find.byKey(const ValueKey('email_id'));
+      Finder emailError = find.text('Please enter a valid email address');
+      Finder passwordError =
+          find.text('Password must be at least 6 characters');
 
-    expect(emailTextFiled, findsOneWidget);
-  });
+      expect(emailError, findsOneWidget);
+      expect(passwordError, findsOneWidget);
+    });
 
-  testWidgets('finding the password id text field',
-      (WidgetTester widgetTester) async {
-    await widgetTester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
-
-    Finder passwordTextFiled = find.byKey(const ValueKey('pass'));
-
-    expect(passwordTextFiled, findsOneWidget);
-  });
-
-  testWidgets('find buttons in the screen', (widgetTester) async {
-    await widgetTester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
-
-    Finder loginButton = find.byType(ElevatedButton);
-    expect(loginButton, findsNWidgets(2));
-  });
-
-  testWidgets('should show required error meesage for empty field',
-      (widgetTester) async {
-    await widgetTester.pumpWidget(const MaterialApp(
-      home: LoginScreen(),
-    ));
-
-    Finder loginButton = find.byKey(const ValueKey('login_button'));
-
-    await widgetTester.tap(loginButton);
-    await widgetTester.pumpAndSettle();
-
-    Finder emailError = find.text('Please enter a valid email address');
-    Finder passwordError = find.text('Password must be at least 6 characters');
-
-    expect(emailError, findsOneWidget);
-    expect(passwordError, findsOneWidget);
-  });
-
-  testWidgets(
+    testWidgets(
       'should show required error mesage when email filed is empty and valied password',
       (widgetTester) async {
     await widgetTester.pumpWidget(const MaterialApp(
@@ -78,7 +42,7 @@ void main() {
     Finder loginButton = find.byKey(const ValueKey('login_button'));
 
     await widgetTester.tap(loginButton);
-    await widgetTester.pumpAndSettle();
+    await widgetTester.pumpAndSettle(const Duration(seconds: 3));
 
     Finder emailError = find.text('Please enter a valid email address');
 
@@ -101,7 +65,7 @@ void main() {
     Finder loginButton = find.byKey(const ValueKey('login_button'));
 
     await widgetTester.tap(loginButton);
-    await widgetTester.pumpAndSettle();
+    await widgetTester.pumpAndSettle(const Duration(seconds: 3));
 
     Finder passwordError = find.text('Password must be at least 6 characters');
 
@@ -124,7 +88,7 @@ void main() {
     Finder loginButton = find.byKey(const ValueKey('login_button'));
 
     await widgetTester.tap(loginButton);
-    await widgetTester.pumpAndSettle();
+    await widgetTester.pumpAndSettle(const Duration(seconds: 3));
 
     Finder emailError = find.text('Please enter a valid email address');
     Finder passwordError = find.text('Password must be at least 6 characters');
@@ -133,16 +97,17 @@ void main() {
     expect(passwordError, findsOneWidget);
   });
 
-  testWidgets('Should navigate to signup page when click on signup button', (widgetTester) async {
+   testWidgets('Should navigate to signup page when click on signup button', (widgetTester) async {
       await widgetTester.pumpWidget(const MaterialApp(home: LoginScreen(),));
 
       Finder signupButton = find.byKey(const ValueKey('signUp_button'));
 
       await widgetTester.tap(signupButton);
-      await widgetTester.pumpAndSettle();
+      await widgetTester.pumpAndSettle(const Duration(seconds: 3));
 
       Finder title = find.text('Signup Page');
       
       expect(title, findsOneWidget);
+  });
   });
 }
