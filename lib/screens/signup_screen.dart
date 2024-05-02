@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:task_app/data/user_data.dart';
 import 'package:task_app/dio_data/book_api_call.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-
+  
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _form = GlobalKey<FormState>();
+  late DatabaseHelper databaseHelper;
 
   var _enteredEmail = '';
   var _enteredPassword = '';
   final _enteredUserName = '';
+
+  @override
+  void initState() {
+    super.initState();
+    databaseHelper = DatabaseHelper(); // Initialize databaseHelper
+  }
 
   @override
   void dispose() {
@@ -35,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         username: _enteredUserName,
         email: _enteredEmail,
         password: _enteredPassword);
-    await DatabaseHelper.insertUser(newUser);
+    await databaseHelper.insertUser(newUser);
 
     _form.currentState?.reset();
     Navigator.of(context).push(

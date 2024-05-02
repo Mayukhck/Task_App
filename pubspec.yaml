@@ -44,6 +44,7 @@ dependencies:
   http: ^1.2.1
   mockito: ^5.4.4
   build_runner: ^2.4.9
+  sqflite_common_ffi: ^2.3.3
 
 dev_dependencies:
   integration_test:

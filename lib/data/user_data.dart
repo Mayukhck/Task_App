@@ -3,6 +3,7 @@ import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart'as path;
 
 class DatabaseHelper {
+  // late Database db;
   static Database? _database;
   static const String tableName = 'users';
 
@@ -26,13 +27,13 @@ class DatabaseHelper {
     return db;
   }
 
-  static Future<void> insertUser(User user) async {
+   Future<void> insertUser(User user) async {
     final db = await database;
     await db.insert(tableName, user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static Future<bool> authenticateUser(String enteredEmail, String enteredPassword) async {
+   Future<bool> authenticateUser(String enteredEmail, String enteredPassword) async {
   final db = await database;
   final List<Map<String, dynamic>> result = await db.query(
     tableName,

@@ -11,15 +11,31 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late DatabaseHelper databaseHelper;
   final _form = GlobalKey<FormState>();
   var _enteredEmail = '';
   var _enteredPassword = '';
+
+  @override
+  void initState() {
+    super.initState();
+    databaseHelper = DatabaseHelper(); // Initialize databaseHelper
+  }
 
   @override
   void dispose() {
     _form.currentState?.dispose();
     super.dispose();
   }
+
+  void scaffoldErrorMess(BuildContext context){
+	ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid email or password'),
+          duration: Duration(seconds: 3),
+        ),
+      );
+}
 
   void _submit() async {
     final isValid = _form.currentState!.validate();
@@ -31,23 +47,18 @@ class _LoginScreenState extends State<LoginScreen> {
     _form.currentState!.save();
 
     final isAuthentic =
-        await DatabaseHelper.authenticateUser(_enteredEmail, _enteredPassword);
+        await databaseHelper.authenticateUser(_enteredEmail, _enteredPassword);
 
     if (isAuthentic) {
       _form.currentState?.reset();
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => //const DashboardScreen()
-          const ApiCall(),
+          builder: (context) => 
+              const ApiCall(),
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Invalid email or password'),
-          duration: Duration(seconds: 3),
-        ),
-      );
+      scaffoldErrorMess(context);
     }
   }
 
