@@ -1,9 +1,9 @@
 import 'package:sqflite/sqflite.dart' as sql;
-import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart'as path;
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DatabaseHelper {
-  // late Database db;
+ 
   static Database? _database;
   static const String tableName = 'users';
 

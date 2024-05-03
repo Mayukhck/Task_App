@@ -16,7 +16,6 @@ class _LoginScreenState extends State<LoginScreen> {
   var _enteredEmail = '';
   var _enteredPassword = '';
 
-  @override
   void initState() {
     super.initState();
     databaseHelper = DatabaseHelper(); // Initialize databaseHelper
